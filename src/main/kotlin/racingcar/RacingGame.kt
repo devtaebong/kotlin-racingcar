@@ -1,11 +1,11 @@
 package racingcar
 
 class RacingGame(
-    inputCarSize: Int,
+    nameInput: String,
     inputRoundCount: Int,
     private val numberGenerator: NumberGenerator,
 ) {
-    private val cars: Cars = Cars.makeNewCars(inputCarSize)
+    private val cars: Cars = Cars.makeNewCars(nameInput)
     private var round = Round(inputRoundCount)
 
     fun play() {
@@ -17,7 +17,17 @@ class RacingGame(
         return round.isZero()
     }
 
-    fun extractCarInfos(): List<Int> {
+    fun extractCarNames(): List<String> {
+        return cars.getCarNames()
+    }
+
+    fun extractNowCarPositions(): List<Int> {
         return cars.getPositionValues()
+    }
+
+    fun extractWinner(): List<String> {
+        val maxPosition = cars.getPositionValues().max()
+        return cars.getCarNames()
+            .filter { cars.getPositionValues()[cars.getCarNames().indexOf(it)] == maxPosition }
     }
 }
