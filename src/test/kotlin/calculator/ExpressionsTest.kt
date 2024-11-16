@@ -11,7 +11,7 @@ class ExpressionsTest : StringSpec({
 
         // when & then
         shouldThrow<IllegalArgumentException> {
-            Expressions(expression)
+            Expression.calculate(expression)
         }
     }
 
@@ -19,12 +19,9 @@ class ExpressionsTest : StringSpec({
         // given
         val expression = "2 ! 1"
 
-        // when
-        val expressions = Expressions(expression)
-
-        // then
+        // when & then
         shouldThrow<IllegalArgumentException> {
-            expressions.calculate()
+            Expression.calculate(expression)
         }
     }
 
@@ -32,12 +29,9 @@ class ExpressionsTest : StringSpec({
         // given
         val expression = "2 + a"
 
-        // when
-        val expressions = Expressions(expression)
-
-        // then
+        // when & then
         shouldThrow<IllegalArgumentException> {
-            expressions.calculate()
+            Expression.calculate(expression)
         }
     }
 })
