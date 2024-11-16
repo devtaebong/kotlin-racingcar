@@ -15,6 +15,12 @@ object ResultView {
     }
 
     private fun printPosition(car: Car) {
-        "-".repeat(car.position).also { println(it) }
+        val position = "-".repeat(car.position)
+        println("${car.name} : $position")
+    }
+
+    fun printWinners(cars: Cars) {
+        val winners = cars.getWinners()
+        println("${winners.joinToString(", ")}가 최종 우승했습니다.")
     }
 }

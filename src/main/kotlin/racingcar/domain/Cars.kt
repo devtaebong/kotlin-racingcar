@@ -8,9 +8,16 @@ class Cars(
         cars.forEach(Car::move)
     }
 
+    fun getWinners(): List<String> {
+        val winnerCar = cars.maxOrNull() ?: return emptyList()
+        return cars.filter { it >= winnerCar } // compareTo 메서드를 활용하기 위해 부등호 비교 처리
+            .map { it.name }
+    }
+
     companion object {
-        fun from(numberOfCars: Int): Cars {
-            return Cars(List(numberOfCars) { Car() })
+        fun from(carNames: List<String>): Cars {
+            return carNames.map { Car(name = it) }
+                .let(::Cars)
         }
     }
 }
