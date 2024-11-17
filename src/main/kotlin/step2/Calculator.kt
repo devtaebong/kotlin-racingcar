@@ -31,7 +31,6 @@ object Calculator {
     }
 }
 
-
 enum class Operator(val operator: String, val apply: (Double, Double) -> Double) {
     ADDITION("+", { a, b -> a + b }),
     SUBTRACTION("-", { a, b -> a - b }),
@@ -41,7 +40,7 @@ enum class Operator(val operator: String, val apply: (Double, Double) -> Double)
             throw IllegalArgumentException("cannot divide by zero.")
         }
         a / b
-    });
+    }), ;
 
     companion object {
         fun from(operator: String): Operator {

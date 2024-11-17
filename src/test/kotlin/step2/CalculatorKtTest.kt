@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class CalculatorKtTest {
-
     @Test
     fun `문자열을 계산한다`() {
         val calculate = Calculator.calculate("2 + 3 * 4 - 10 / 2")
@@ -43,5 +42,4 @@ class CalculatorKtTest {
         assertThatThrownBy { Calculator.calculate("1 + & 3 / 0") }
             .isInstanceOf(NumberFormatException::class.java)
     }
-
 }
