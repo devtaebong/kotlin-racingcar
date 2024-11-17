@@ -80,8 +80,8 @@ class FourBasicOperations {
 
         return operators
     }
-
-    fun evaluate(
+    
+    private fun evaluate(
         numbers: List<Int>,
         operators: List<Operator>,
     ): Int {
@@ -90,23 +90,15 @@ class FourBasicOperations {
 
         var i = 0
         while (i < ops.size) {
-            if (ops[i] == Operator.MULTIPLY || ops[i] == Operator.DIVIDE) {
-                val left = values[i]
-                val right = values[i + 1]
-                val result = if (ops[i] == Operator.MULTIPLY) left * right else left / right
-                values[i] = result
-                values.removeAt(i + 1)
-                ops.removeAt(i)
-            } else {
-                i++
-            }
+            val result = ops[i].operation(values[i], values[i + 1])
+            values[i] = result
+            values.removeAt(i + 1)
+            ops.removeAt(i)
         }
 
         var total = values[0]
         for (j in 0 until ops.size) {
-            total = if (ops[j] == Operator.SUM) total + values[j + 1] else total - values[j + 1]
+            total = ops[j].operation(total, values[j + 1])
         }
-
         return total
     }
-}
