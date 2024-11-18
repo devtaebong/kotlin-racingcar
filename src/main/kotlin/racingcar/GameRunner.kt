@@ -1,18 +1,26 @@
 package racingcar
 
-import racingcar.domain.Input
 import racingcar.domain.RacingGame
-import racingcar.util.DefaultRandomGenerator
+import racingcar.util.RandomGenerator
+import racingcar.view.CarsInfoResultViewModel
+import racingcar.view.GameWinnerResultViewModel
+import racingcar.view.InputView
 import racingcar.view.ResultView
-import racingcar.view.ResultViewAttribute
 
 object GameRunner {
-    fun play(input: Input) {
-        val racingGame = RacingGame(input.carCount, DefaultRandomGenerator())
-        println("실행 결과")
-        repeat(input.playCount) {
-            racingGame.tryMove()
-            ResultView().resolve(ResultViewAttribute(racingGame))
+    fun run() {
+        val inputView = InputView()
+        val racingGameInput = inputView.parse()
+        val racingGame = RacingGame(racingGameInput, RandomGenerator())
+        val resultView = ResultView()
+
+        resultView.resolveTitle()
+
+        while (!racingGame.isEnd()) {
+            racingGame.play()
+            resultView.resolveCarsInfo(CarsInfoResultViewModel(racingGame.getCarsInfo()))
         }
+
+        resultView.resolveGameWinner(GameWinnerResultViewModel(racingGame.getWinnerInfo()))
     }
 }

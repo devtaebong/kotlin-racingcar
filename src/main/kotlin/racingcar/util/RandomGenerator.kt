@@ -1,5 +1,5 @@
 package racingcar.util
 
-interface RandomGenerator {
-    fun generate(range: IntRange): Int
+class RandomGenerator : NumberGenerator {
+    override fun generate(range: IntRange) = range.random()
 }
