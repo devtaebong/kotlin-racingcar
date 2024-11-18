@@ -12,11 +12,11 @@ class CarsTest {
         // given
         val cars = Cars(
             listOf(
-                Car("a", 1),
-                Car("b", 2),
-                Car("c", 3),
-                Car("d", 2),
-                Car("e", 3),
+                Car(name = "a", position = 1),
+                Car(name = "b", position = 2),
+                Car(name = "c", position = 3),
+                Car(name = "d", position = 2),
+                Car(name = "e", position = 3),
             ),
         )
 

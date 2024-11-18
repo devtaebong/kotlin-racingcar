@@ -5,24 +5,26 @@ import racingcar.domain.movestrategy.RandomMoveStrategy
 
 class Car(
     val name: String,
-    position: Int = 0,
+    var position: Int = 0,
     private val moveStrategy: MoveStrategy = RandomMoveStrategy(),
 ) : Comparable<Car> {
 
     init {
-        require(name.length <= 5) { "자동차 이름은 5자를 초과할 수 없습니다." }
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
-
-    var position = position
-        private set
 
     fun move() {
         if (moveStrategy.canMove()) {
-            position += 1
+            position += MOVE_STEP
         }
     }
 
     override fun compareTo(other: Car): Int {
         return position.compareTo(other.position)
+    }
+
+    companion object {
+        private const val MAX_NAME_LENGTH = 5
+        private const val MOVE_STEP = 1
     }
 }
