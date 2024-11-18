@@ -1,23 +1,18 @@
 package racingcar
 
-import racingcar.view.CarInputView
-import racingcar.view.CarOutputView
-import racingcar.view.DisplayConstant.Companion.CAR_VIEW_MESSAGE
-import racingcar.view.DisplayConstant.Companion.TRY_VIEW_MESSAGE
-
 class RacingGame(
-    private val inputView: CarInputView,
-    private val outputView: CarOutputView,
+    private val carNames: String,
+    private val round: Round,
+    private val numberGenerator: NumberGenerator,
 ) {
-    fun start() {
-        val carCount = inputView.inputView(CAR_VIEW_MESSAGE)
-        val tryCount = inputView.inputView(TRY_VIEW_MESSAGE)
+    fun play(): Cars {
+        val racingCars = Cars.joined(carNames)
 
-        val racingCars = Cars(List(carCount) { Car() }, RandomMovementHandler(SecureRandomGenerator()))
-
-        for (i in 0 until tryCount) {
-            racingCars.move()
+        while (!round.isFinished()) {
+            racingCars.move(numberGenerator)
+            racingCars.print()
+            round.end()
         }
-        outputView.outputView(racingCars.getCars())
+        return racingCars
     }
 }

@@ -11,7 +11,7 @@ class ExpressionsTest : StringSpec({
 
         // when & then
         shouldThrow<IllegalArgumentException> {
-            Expression.calculate(expression)
+            StringCalculator().calculate(expression)
         }
     }
 
@@ -21,7 +21,7 @@ class ExpressionsTest : StringSpec({
 
         // when & then
         shouldThrow<IllegalArgumentException> {
-            Expression.calculate(expression)
+            StringCalculator().calculate(expression)
         }
     }
 
@@ -31,7 +31,7 @@ class ExpressionsTest : StringSpec({
 
         // when & then
         shouldThrow<IllegalArgumentException> {
-            Expression.calculate(expression)
+            StringCalculator().calculate(expression)
         }
     }
 })

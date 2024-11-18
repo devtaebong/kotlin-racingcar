@@ -10,7 +10,7 @@ class CalculatorTest : StringSpec({
         val expression = "2 + 3 * 4 / 2 - 1"
 
         // when
-        val calculator = Calculator()
+        val calculator = StringCalculator()
         val result = calculator.calculate(expression)
 
         // then

@@ -11,8 +11,7 @@ class OperatorTest : StringSpec({
         val expression = "2 + 3"
 
         // when
-        val calculator = Calculator()
-        val result = calculator.calculate(expression)
+        val result = StringCalculator().calculate(expression)
 
         // then
         result shouldBe 5
@@ -23,8 +22,7 @@ class OperatorTest : StringSpec({
         val expression = "2 - 3"
 
         // when
-        val calculator = Calculator()
-        val result = calculator.calculate(expression)
+        val result = StringCalculator().calculate(expression)
 
         // then
         result shouldBe -1
@@ -35,8 +33,7 @@ class OperatorTest : StringSpec({
         val expression = "2 * 3"
 
         // when
-        val calculator = Calculator()
-        val result = calculator.calculate(expression)
+        val result = StringCalculator().calculate(expression)
 
         // then
         result shouldBe 6
@@ -47,8 +44,7 @@ class OperatorTest : StringSpec({
         val expression = "6 / 3"
 
         // when
-        val calculator = Calculator()
-        val result = calculator.calculate(expression)
+        val result = StringCalculator().calculate(expression)
 
         // then
         result shouldBe 2
@@ -59,7 +55,7 @@ class OperatorTest : StringSpec({
         val expression = "6 / 0"
 
         // when & then
-        val calculator = Calculator()
+        val calculator = StringCalculator()
         shouldThrow<IllegalArgumentException> {
             calculator.calculate(expression)
         }
