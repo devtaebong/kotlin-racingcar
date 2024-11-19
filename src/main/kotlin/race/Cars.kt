@@ -1,30 +1,18 @@
 package race
 
-class Cars(private val cars: List<Car>) : List<Car> by cars {
+data class Cars(val values: List<Car>) : List<Car> by values {
     init {
-        require(cars.isNotEmpty()) { "최소 1대 이상 입력 해주세요." }
+        require(values.isNotEmpty()) { "최소 1대 이상 입력 해주세요. 입력 값: $values" }
     }
 
-    companion object {
-        private val MOVE_CONDITION = PositiveNumber(4)
+    constructor(names: Names) : this(names.map { Car(it, PositiveNumber.ONE) })
 
-        fun from(positiveNumber: PositiveNumber): Cars {
-            return Cars(List(positiveNumber.value) { Car(PositiveNumber(1)) })
-        }
-    }
-
-    fun moveAll(moveConditions: List<PositiveNumber>) {
-        cars.forEachIndexed { index, car ->
-            move(car, moveConditions[index])
-        }
-    }
-
-    private fun move(
-        moveCar: Car,
-        moveCondition: PositiveNumber,
+    fun moveAt(
+        index: Int,
+        condition: isMove,
     ) {
-        if (moveCondition.isGreaterThanOrEqual(MOVE_CONDITION)) {
-            moveCar.move()
+        if (condition) {
+            values[index].move()
         }
     }
 }

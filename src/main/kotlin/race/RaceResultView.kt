@@ -12,11 +12,14 @@ class RaceResultView {
             progressPrint(it)
             println()
         }
+
+        val winners = result.winners
+        println("${winners.joinToString(", ")}가 최종 우승했습니다.")
     }
 
     private fun progressPrint(it: RaceRound) {
-        it.positions.forEach {
-            println(PROGRESS_UNIT.repeat(it.value))
+        it.round.forEach {
+            println("${it.first}: ${PROGRESS_UNIT.repeat(it.second)}")
         }
     }
 }

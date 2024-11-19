@@ -1,15 +1,18 @@
 package race
 
-class Car(private var position: PositiveNumber) {
-    val movedPosition: PositiveNumber
-        get() = position
+class Car(
+    private val name: Name,
+    private var position: PositiveNumber,
+) {
+    val progress: Int
+        get() = position.value
+    val displayName: String
+        get() = name.value
 
-    companion object {
-        private const val MOVE_POSITION = 1
-    }
+    constructor(name: String, position: Int) : this(Name(name), PositiveNumber(position))
 
     fun move() {
-        position += PositiveNumber(MOVE_POSITION)
+        this.position += PositiveNumber(MOVE_POSITION)
     }
 
     override fun equals(other: Any?): Boolean {
@@ -18,10 +21,19 @@ class Car(private var position: PositiveNumber) {
 
         other as Car
 
-        return position == other.position
+        if (name != other.name) return false
+        if (position != other.position) return false
+
+        return true
     }
 
     override fun hashCode(): Int {
-        return position.hashCode()
+        var result = name.hashCode()
+        result = 31 * result + position.hashCode()
+        return result
+    }
+
+    companion object {
+        private const val MOVE_POSITION = 1
     }
 }

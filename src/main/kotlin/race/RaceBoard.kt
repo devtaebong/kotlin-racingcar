@@ -1,29 +1,25 @@
 package race
 
 class RaceBoard(
-    private val carCount: Int,
-    private val retryCount: Int,
-    private val randomGenerate: RandomGenerate,
+    private val cars: Cars,
+    private val moveConditions: MoveConditions,
 ) {
-    companion object {
-        private const val RANDOM_START = 0
-        private const val RANDOM_END = 9
-
-        fun create(
-            carCount: Int,
-            retryCount: Int,
-        ) = RaceBoard(carCount, retryCount, RandomGenerate(RANDOM_START, RANDOM_END))
-    }
-
     fun start(): RaceResult {
-        val cars = Cars.from(PositiveNumber(carCount))
+        val raceRounds =
+            moveConditions.asSequence()
+                .chunked(cars.size)
+                .map { moveConditions ->
+                    moveConditions.forEachIndexed { index, moveCondition ->
+                        cars.moveAt(index, moveCondition)
+                    }
+                    RaceRound(
+                        cars.values.map {
+                            it.displayName to it.progress
+                        },
+                    )
+                }
+                .toList()
 
-        return RaceResult(
-            (1..retryCount).map {
-                val moveConditions: List<PositiveNumber> = List(carCount) { randomGenerate.generate() }
-                cars.moveAll(moveConditions)
-                RaceRound(cars.map { it.movedPosition })
-            },
-        )
+        return RaceResult(raceRounds)
     }
 }
