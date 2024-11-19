@@ -40,3 +40,38 @@
 - [x] 결과를 출력하라
 - [x] 랜덤한 값을 생성하라
 - [x] 자동차에게 랜덤값을 전달하라
+
+## Step4 자동차 경주(우승자)
+### Step3 리뷰 반영사항
+- [x] RacingProcessor::실세계 객체로써 클래스명 고려 
+- [x] RacingProcessor::cars 를 상태로서 관리
+- [x] RacingProcessor::block 구문과 표현식 일관성 고려
+- [x] RandomGenerator::역할을 더 명확히 드러내도록 클래스명 고려
+- [x] ResultView::불필요한 메서드 추출 수정
+- [x] Car::객체 행동을 통한 상수 위치 고려
+
+### 요구사항
+#### 프로그래밍 요구사항
+- [x] UI 제외 모든로직 단위테스트
+- [x] indent depth 1 제한
+- [x] method 15 line 제한
+- [x] 기능요구사항 readme 정리
+- [x] 기능 단위 commit
+
+#### 기능 요구사항
+- [x] 자동차 이름 목록을 쉼표 기준으로 구분하여 입력받는다
+- [x] 자동차 전진 여부 출력시 이름도 함께 출력한다
+- [x] 경주 종료시 최종 우승자를 함께 출력한다
+- [x] 자동차 이름은 5자를 초과할 수 없다
+
+### 리뷰반영사항 - 1
+- [x] Car::유효성 검증로직 init block 위치 수정
+- [x] Car::매직넘버 수정
+- [x] DefaultCarMoveConditionGenerator::최상위변수와 동반객체 상수 고민
+- [x] InputView::불필요한 변수선언 수정
+- [x] InputView::적절한 예외 메시지 출력
+- [x] DefaultCarMoveConditionGenerator::난수생성이 아닌 명확한 메시지를 반환하도록 수정
+- [x] InputView::moveTryCount 반복시키는 역할 분리
+- [x] ResultView::우승자 판단로직과 출력로직 분리
+- [x] CarTest::전진조건 4미만일 때에 대한 테스트 -> DefaultCarMovementDecider 테스트로 변환
+- [x] CarMovementDecider::fun interface 적용
