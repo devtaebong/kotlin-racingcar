@@ -1,10 +1,10 @@
-package racingcar
+package racingcar.domain
 
 data class Round(
-    private var value: Int,
+    var value: Int,
 ) {
     init {
-        require(value >= MIN_ROUND) { "라운드는 1 이상이어야 합니다." }
+        require(value >= MIN_ROUND) { "라운드는 1 이상이어야 합니다. input = $value" }
     }
 
     fun end() {
@@ -13,10 +13,6 @@ data class Round(
 
     fun isFinished(): Boolean {
         return value == ALL_ROUND_FINISHED
-    }
-
-    fun getRound(): Int {
-        return value
     }
 
     companion object {
