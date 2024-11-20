@@ -11,13 +11,18 @@ object ResultView {
         println()
     }
 
+    fun printWinner(winners: List<String>) {
+        println("${winners.joinToString()}가 최종 우승했습니다.")
+    }
+
     private fun printResultPerCar(raceResult: RaceResult) {
         val currentPosition = CAR_MOVED_MARKER.repeat(raceResult.position)
-        println(currentPosition)
+        println("${raceResult.name} : $currentPosition")
     }
 
     data class RaceResult(
         val carId: Int,
+        val name: String,
         val position: Int,
     )
 

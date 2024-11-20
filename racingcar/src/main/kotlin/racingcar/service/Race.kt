@@ -14,4 +14,6 @@ class Race(
         }
         return carService.findAll()
     }
+
+    fun findWinners(): List<Car> = carService.findAllByMaxPosition()
 }
