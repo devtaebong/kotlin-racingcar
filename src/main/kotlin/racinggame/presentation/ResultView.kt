@@ -1,5 +1,7 @@
 package racinggame.presentation
 
+import racinggame.core.Car
+import racinggame.core.RaceResult
 import racinggame.core.Round
 
 class ResultView() {
@@ -8,15 +10,39 @@ class ResultView() {
     }
 
     private fun drawRoundResult(round: Round) {
-        round.cars.forEach { car -> println("${car.name} ${DRIVING_LINE.repeat(car.position)}") }
-        println()
+        val strBuilder = StringBuilder()
+
+        round.cars.forEach { car ->
+            strBuilder.append("${car.name} ${DRIVING_LINE.repeat(car.position)}\n")
+        }
+        println(strBuilder.toString())
     }
 
-    fun drawRacingResult(rounds: List<Round>) {
-        println("실행 결과")
-        rounds.forEach { round ->
-            drawRoundResult(round)
-            println()
+    fun drawWinner(cars: List<Car>) {
+        val strBuilder = StringBuilder()
+
+        strBuilder.append(cars.joinToString(",") { it.name })
+        strBuilder.append("가 최종 우승했습니다.")
+        println(strBuilder.toString())
+    }
+
+    private fun appendName(
+        strBuilder: StringBuilder,
+        value: String,
+        index: Int,
+    ) {
+        if (index > 0) {
+            strBuilder.append(", ")
         }
+
+        strBuilder.append(value)
+    }
+
+    fun drawRacingResult(raceResult: RaceResult) {
+        println("실행 결과")
+        raceResult.roundList.forEach { round ->
+            drawRoundResult(round)
+        }
+        drawWinner(raceResult.winners)
     }
 }

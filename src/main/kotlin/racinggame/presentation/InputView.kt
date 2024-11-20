@@ -1,32 +1,35 @@
 package racinggame.presentation
 
-class InputView(val guide: String) {
-    companion object {
-        private const val ERROR_INVALID_STRING = "잘못 입력하셨습니다."
-        private const val ERROR_GUIDE_IS_EMPTY = "가이드 문구가 없습니다"
-        private const val RETRY_MAX_COUNT = 5
+object InputView {
+    private const val ERROR_INVALID_STRING = "잘못 입력하셨습니다."
+
+    private const val CAR_COUNT_GUIDE_TEXT = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+    private const val MOVEMENT_COUNT_GUIDE_TEXT = "시도할 횟수는 몇 회인가요?"
+
+    private const val DELIMITER = ","
+
+    fun inputStrings(): List<String> {
+        println(CAR_COUNT_GUIDE_TEXT)
+        val value = readlnOrNull()
+        return split(value)
     }
 
-    init {
-        require(guide.isNotBlank()) { ERROR_GUIDE_IS_EMPTY }
+    fun split(value: String?): List<String> {
+        require(!value.isNullOrBlank()) { ERROR_INVALID_STRING }
+
+        val strings = value.trim().split(DELIMITER)
+        return strings
     }
 
     fun inputNumber(): Int {
-        for (i in 0 until RETRY_MAX_COUNT) {
-            println(guide)
+        println(MOVEMENT_COUNT_GUIDE_TEXT)
 
-            val value = readlnOrNull()
-            if (isValid(value)) {
-                return value!!.toInt()
-            }
-
-            println(ERROR_INVALID_STRING)
-        }
-
-        return 0
+        val value = readlnOrNull()
+        require(isValidNumber(value)) { ERROR_INVALID_STRING }
+        return value!!.toInt()
     }
 
-    fun isValid(value: String?): Boolean {
+    fun isValidNumber(value: String?): Boolean {
         val convertedValue = value?.toIntOrNull()
         return convertedValue != null && convertedValue > 0
     }
