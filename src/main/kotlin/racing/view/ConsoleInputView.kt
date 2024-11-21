@@ -1,4 +1,6 @@
-package racing
+package racing.view
+
+import racing.infrastructure.InputView
 
 class ConsoleInputView : InputView {
     override fun askTryCount() {
@@ -37,6 +39,7 @@ class ConsoleInputView : InputView {
 
     private fun validateBlank(input: String?): String {
         requireNotNull(input) { "입력이 없습니다." }
+        require(input.isNotBlank()) { "입력이 없습니다." }
 
         return input
     }

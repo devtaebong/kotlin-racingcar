@@ -1,23 +1,25 @@
-package racing
+package racing.view
+
+import racing.domain.RaceResult
+import racing.domain.Result
+import racing.infrastructure.ResultView
 
 class ConsoleResultView : ResultView {
     override fun showResult(result: RaceResult) {
         println(MESSAGE)
 
-        result.getResults()
-            .groupBy(Result::round)
-            .forEach { (_, results) -> renderResults(results) }
+        result.results
+            .sortedBy(Result::round)
+            .forEach(::printResult)
 
         printWinners(result)
     }
 
-    private fun renderResults(results: List<Result>) {
-        results.forEach(::printResult)
-        println()
-    }
-
     private fun printResult(result: Result) {
-        println("${result.name} : ${MARK.repeat(result.position)}")
+        result.snapShots.forEach {
+            println("${it.name}: ${MARK.repeat(it.position)}")
+        }
+        println()
     }
 
     private fun printWinners(result: RaceResult) {
