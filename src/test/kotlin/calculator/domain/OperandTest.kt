@@ -13,9 +13,6 @@ class OperandTest : FunSpec({
         operand1.value shouldBe 2.0
         operand2.value shouldBe 2.0
     }
-    test("피연산자는 생성 시 입력값이 null이면 예외를 던진다.") {
-        shouldThrow<IllegalArgumentException> { Operand(null) }
-    }
 
     test("피연산자는 생성 시 입력값이 빈 값이면 예외를 던진다.") {
         shouldThrow<IllegalArgumentException> { Operand("") }

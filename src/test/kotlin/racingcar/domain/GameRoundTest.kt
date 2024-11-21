@@ -22,7 +22,7 @@ class GameRoundTest : StringSpec({
 
         shouldThrow<IllegalStateException> {
             repeat(3) {
-                gameRound.decrease()
+                gameRound.proceed()
             }
         }
     }

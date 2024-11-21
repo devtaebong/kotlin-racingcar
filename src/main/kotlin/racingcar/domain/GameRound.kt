@@ -11,7 +11,11 @@ class GameRound(input: String?) {
         count = input.toInt()
     }
 
-    fun decrease() {
+    fun proceed() {
+        decrease()
+    }
+
+    private fun decrease() {
         check(count - 1 >= 0) { "더이상 남은 판수가 없습니다." }
         count--
     }

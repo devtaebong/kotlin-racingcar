@@ -3,6 +3,7 @@ package racingcar.domain
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import racingcar.domain.car.CarName
 import java.lang.IllegalArgumentException
 
 class CarNameTest : StringSpec({

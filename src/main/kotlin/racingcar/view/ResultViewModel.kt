@@ -1,5 +1,7 @@
 package racingcar.view
 
-data class CarsInfoResultViewModel(val carsInfo: List<Pair<String, Int>>)
+import racingcar.domain.history.CarHistories
+
+data class CarsInfoResultViewModel(val carsInfo: List<CarHistories>)
 
 data class GameWinnerResultViewModel(val winners: List<String>)
