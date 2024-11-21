@@ -1,45 +1,53 @@
 package study.racing
 
+import study.racing.model.Car
+import study.racing.model.RacingCarGameSettings
+import study.racing.view.InputView
+import study.racing.view.ResultView
+import kotlin.random.Random
+
 /**
  * @author 이상준
  */
 class RacingCarGame(
-    private val gameSettings: GameSettings,
+    private val gameSettings: RacingCarGameSettings,
 ) {
-    private val carList = mutableListOf<Car>()
+    val cars = mutableListOf<Car>()
 
-    private fun init() {
-        repeat(gameSettings.carCount) {
-            this.carList.add(Car())
-        }
+    init {
+        this.cars.addAll(gameSettings.carNames.map { Car(it) })
     }
 
-    private fun playGame() {
-        carList.forEach {
-            it.move()
-            gameMessageView(it)
-        }
+    private fun getRandomNumber(): Int {
+        return Random.nextInt(Car.MAX_RANDOM_POSITION)
+    }
+
+    fun playGame(
+        car: Car,
+        moveNumber: Int,
+    ) {
+        car.move(moveNumber)
     }
 
     fun start() {
-        init()
-
         repeat(gameSettings.racingCount) {
-            playGame()
+            cars.forEach {
+                playGame(it, getRandomNumber())
+                ResultView().gameProcessMessageView(it)
+            }
             println()
         }
+        ResultView().gameWinnerMessageView(winners())
     }
 
-    private fun gameMessageView(car: Car) {
-        repeat(car.getPosition()) {
-            print(GameRule.RACING_CAR_MOVE_TEXT)
-        }
-        println()
+    fun winners(): List<Car> {
+        val maxPosition = this.cars.maxOf { it.position }
+        return this.cars.filter { it.position == maxPosition }
     }
 }
 
 fun main() {
-    val gameSettings = RacingCarGameSettings().inputBySettings()
+    val gameSettings = InputView().inputBySettings()
     val racingCarGame = RacingCarGame(gameSettings)
     racingCarGame.start()
 }
