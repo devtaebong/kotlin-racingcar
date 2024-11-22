@@ -4,25 +4,27 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.NumberGenerator
 import racingcar.domain.Race
+import racingcar.domain.RaceGame
+import racingcar.domain.RaceResult
 
-class RaceTest {
+class RaceGameTest {
     private val numberGenerator =
         object : NumberGenerator {
-            var flag = 3
+            var flag = 1
 
             override fun getNumber(): Int {
-                val result = flag
+                val result = (flag + 9) % 10
                 flag++
-                flag %= 10
+                flag %= 2
                 return result
             }
         }
 
     @Test
-    fun `doRace 테스트`() {
+    fun `우승자 테스트`() {
         val race = Race.Companion.of(listOf("car1", "car2", "car3"), numberGenerator)
-        race.doRace()
-        race.doRace()
-        assertThat(race.cars.map { it.moveCount }).containsExactly(1, 2, 2)
+        val raceGame = RaceGame(race, RaceResult(listOf()))
+        raceGame.doRaceGame(3)
+        assertThat(raceGame.raceResult.getWinner().map { it.name }).containsExactly("car2")
     }
 }
