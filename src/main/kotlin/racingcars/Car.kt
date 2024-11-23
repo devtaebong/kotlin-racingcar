@@ -14,7 +14,7 @@ data class Car(
     }
 
     companion object {
-        const val DEFAULT_POSITION = 0
-        const val FORWARD_NUMBER = 4
+        private const val DEFAULT_POSITION = 0
+        private const val FORWARD_NUMBER = 4
     }
 }
