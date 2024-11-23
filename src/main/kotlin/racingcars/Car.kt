@@ -2,6 +2,7 @@ package racingcars
 
 data class Car(
     val id: Int,
+    val name: String,
     private var _position: Int = DEFAULT_POSITION,
 ) {
     val position: Int
