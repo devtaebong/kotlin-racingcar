@@ -9,6 +9,7 @@ class GameManager(
     private val randomNumberGenerator: RandomNumberGenerator,
 ) {
     fun start() {
+        val racingCarNames = inputView.getCarNames()
         val numberOfCar = inputView.getNumberOfCars()
         val attemptCount = inputView.getAttemptCount()
         val racingCars = (1..numberOfCar).map { id -> Car(id = id) }
