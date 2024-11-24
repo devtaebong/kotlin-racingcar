@@ -70,14 +70,4 @@ class UserInputTest : DescribeSpec({
             }
         }
     }
-
-    describe("displays input messages for car names and the number of attempts separately") {
-        it("car input") {
-            throw NotImplementedTestException()
-        }
-
-        it("attempts input") {
-            throw NotImplementedTestException()
-        }
-    }
 })

@@ -14,6 +14,11 @@ class InputView(private val inputProvider: () -> String) {
         return getUserInputOrThrow(ATTEMPT_COUNT)
     }
 
+    fun getCarNames(): String {
+        println(UserInputType.CAR_NAME.message)
+        return inputProvider()
+    }
+
     private fun getUserInputOrThrow(userInputType: UserInputType): Int {
         println(userInputType.message)
         val input = inputProvider()

@@ -30,6 +30,7 @@ enum class Operator(val symbol: String) {
             left: Double,
             right: Double,
         ): Double {
+            if (right == 0.0) throw IllegalArgumentException("Cannot divide by zero")
             return left / right
         }
     }, ;

@@ -7,7 +7,7 @@ class CarTest : DescribeSpec({
     lateinit var sut: Car
 
     describe("isMovableTest") {
-        beforeTest { sut = Car(id = 1) }
+        beforeTest { sut = Car(id = 1, name = "default") }
         context("when random number greater than 4 or equals to 4") {
             it("should be true") {
                 val randomNumber = 5
