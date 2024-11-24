@@ -3,7 +3,6 @@ package racingcars.ui
 import racingcars.UserInputType
 import racingcars.UserInputType.ATTEMPT_COUNT
 import racingcars.UserInputType.NUMBER_OF_CARS
-import racingcars.util.convertToListOrThrow
 import racingcars.util.validInputToInt
 
 class InputView(private val inputProvider: () -> String) {
@@ -15,10 +14,9 @@ class InputView(private val inputProvider: () -> String) {
         return getUserInputOrThrow(ATTEMPT_COUNT)
     }
 
-    fun getCarNames(): List<String> {
+    fun getCarNames(): String {
         println(UserInputType.CAR_NAME.message)
-        val carNames = inputProvider()
-        return carNames.convertToListOrThrow()
+        return inputProvider()
     }
 
     private fun getUserInputOrThrow(userInputType: UserInputType): Int {
