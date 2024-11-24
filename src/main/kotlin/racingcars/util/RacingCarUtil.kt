@@ -1,7 +1,5 @@
 package racingcars.util
 
-import racingcars.Car
-
 private const val MINIMUM_INPUT_NUMBER = 1
 private const val REGEX_VALID_CHARACTERS = "^[a-zA-Z,]+$"
 private const val MAXIMUM_CAR_NAME_LENGTH = 5
@@ -26,9 +24,4 @@ fun validateCarInput(
     require(numberOfCars == carNameList.size) {
         "자동차 이름과 생성할 대수가 일치하지 않음"
     }
-}
-
-fun findWinners(racingCars: List<Car>): List<Car> {
-    val maxPosition = racingCars.maxOfOrNull { it.position } ?: 0
-    return racingCars.filter { it.position == maxPosition }
 }

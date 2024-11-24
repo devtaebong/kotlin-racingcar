@@ -2,7 +2,6 @@ package racingcars
 
 import racingcars.ui.InputView
 import racingcars.ui.ResultView
-import racingcars.util.findWinners
 import racingcars.util.validateCarInput
 
 class GameManager(
@@ -21,6 +20,11 @@ class GameManager(
         }
         val winners = findWinners(racingCars)
         resultView.printWinners(winners)
+    }
+
+    private fun findWinners(racingCars: List<Car>): List<Car> {
+        val maxPosition = racingCars.maxOfOrNull { it.position } ?: 0
+        return racingCars.filter { it.position == maxPosition }
     }
 
     private fun createCarOrThrow(
