@@ -19,6 +19,10 @@ class ResultView {
 
     fun printWinners(winnersCar: List<Car>) {
         val winnerNames = winnersCar.joinToString(", ") { it.name }
-        println("${winnerNames}이 최종 우승했습니다.")
+        println(winnerNames + PRINT_WIN_MESSAGE)
+    }
+
+    companion object {
+        private const val PRINT_WIN_MESSAGE = "이 최종 우승했습니다."
     }
 }
