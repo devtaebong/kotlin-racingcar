@@ -17,7 +17,7 @@ class InputViewTest : DescribeSpec({
                         sut.getNumberOfCars()
                     }
 
-                exception.message shouldBe "유효한 값을 입력해주세요" // 예외 메시지 확인
+                exception.message shouldBe "유효한 값을 입력해주세요"
             }
 
             it("number of car input value is not Int, should throw exception") {
