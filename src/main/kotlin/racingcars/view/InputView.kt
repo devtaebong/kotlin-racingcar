@@ -1,4 +1,4 @@
-package racingcars.ui
+package racingcars.view
 
 class InputView(private val inputProvider: () -> String) {
     fun getNumberOfCars(): Int {
