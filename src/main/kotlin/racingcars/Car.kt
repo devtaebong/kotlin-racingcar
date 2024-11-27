@@ -20,6 +20,11 @@ data class Car(
         private const val MAXIMUM_CAR_NAME_LENGTH = 5
         private const val REGEX_VALID_CHARACTERS = "^[a-zA-Z,]+$"
 
+        fun findWinners(racingCars: List<Car>): List<Car> {
+            val maxPosition = racingCars.maxOfOrNull { it.position } ?: 0
+            return racingCars.filter { it.position == maxPosition }
+        }
+
         fun fromInput(numberOfCar: Int, carNamesInput: String): List<Car> {
             val carNames = parseCarNamesInput(carNamesInput)
             return createCarList(carNames, numberOfCar)
