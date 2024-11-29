@@ -6,21 +6,31 @@ import racingcars.strategy.SingleDigitRandomNumberGenerator
 import racingcars.view.InputView
 import racingcars.view.ResultView
 
-class RacingCarGame(
-    private val inputView: InputView,
-    private val resultView: ResultView,
-) {
+class RacingCarGameController {
+    private val inputView = InputView { readln() }
+    private val resultView = ResultView()
+
     fun start() {
+        val racingCars = initializeCars()
+        playGame(racingCars)
+        printWinners(racingCars)
+    }
+
+    private fun initializeCars(): List<Car> {
         val racingCarNames = inputView.getCarNames()
         val numberOfCar = inputView.getNumberOfCars()
-        val attemptCount = inputView.getAttemptCount()
-        val racingCars = Car.fromInput(numberOfCar, racingCarNames)
+        return Car.fromInput(numberOfCar, racingCarNames)
+    }
 
+    private fun playGame(racingCars: List<Car>) {
+        val attemptCount = inputView.getAttemptCount()
         repeat(attemptCount) {
             playRound(racingCars)
             resultView.printRaceResults(racingCars)
         }
+    }
 
+    private fun printWinners(racingCars: List<Car>) {
         val winners = Winners.find(racingCars)
         resultView.printWinners(winners)
     }
@@ -32,3 +42,4 @@ class RacingCarGame(
         }
     }
 }
+
